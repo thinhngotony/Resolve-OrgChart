@@ -73,7 +73,10 @@ const data = [
     }
 ]
 
+
+
 var items = new ej.data.DataManager(data);
+
 
 var diagram = new ej.diagrams.Diagram({
     width: "1000px",
@@ -83,20 +86,20 @@ var diagram = new ej.diagrams.Diagram({
         doBinding: function (node, data) {
             // You will get the employee information in data argument and bind that value directly to node's built-in properties.
             console.log(node);
-            node.annotations = [{ content: data.name + "\n"+ data.id}];
+            node.annotations = [{ content: data.name + "\n"+ data.id + "\nSuperior " + data.superior }];
             node.style = { fill: data.color };
-            node.photo = [{ content: "https://media.techz.vn/resize_x650x/media2019/upload2019/2022/05/07/ngoctrinh5_07052022225410.jpg" }];
-            node.shape = {type:"image", source: "https://media.techz.vn/resize_x650x/media2019/upload2019/2022/05/07/ngoctrinh5_07052022225410.jpg"};
+            // node.photo = [{ content: "https://media.techz.vn/resize_x650x/media2019/upload2019/2022/05/07/ngoctrinh5_07052022225410.jpg" }];
+            // node.shape = {type:"image", source: "https://media.techz.vn/resize_x650x/media2019/upload2019/2022/05/07/ngoctrinh5_07052022225410.jpg"};
         }
     },
     layout: {
         type: 'OrganizationalChart',
         getLayoutInfo: function (node, options) {
             // you can get the children belongs to the parent node and decide the assistants from that children.
-            if (node.data.role === 'General Manager') {
-                options.assistants.push(options.children[2]);
-                options.children.splice(2, 1);
-            }
+            // if (node.data.superior === 'Salome Simoes' ) {
+            //     options.assistants.push(options.children[2]);
+            //     options.children.splice(2, 1);
+            // }
         }
     },
     getNodeDefaults: nodeDefaults,
